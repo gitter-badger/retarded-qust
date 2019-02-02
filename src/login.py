@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import execjs
-
+from src import point
 
 def login(username, password):
     s = requests.Session()
@@ -28,4 +28,12 @@ def login(username, password):
 
 
 if __name__ == '__main__':
-    pass
+    all_point = point.get_point(login('', ''))
+    for single in (all_point['list']):
+        print('课程号:' + single['KCH'], \
+              '成绩:' + str(single['KCCJ']), \
+              '绩点:' + str(single['JD']), \
+              '学分:' + str(single['XF']), \
+              '学年:' + str(single['XN']), \
+              '成绩填写日期:' + single['CJLRRQ'])
+
