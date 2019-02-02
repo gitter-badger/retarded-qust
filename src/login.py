@@ -23,6 +23,9 @@ def login(username, password):
         "_eventId": soup.find("input", {'name': "_eventId"})["value"]
     })
     res_soup = BeautifulSoup(login_res.content, 'html.parser')
-    print("user: " + res_soup.find("div", id="user-con").find("span", {"class": "tit"}).decode_contents())
+    user_con = res_soup.find("div", id="user-con")
+    if not user_con:
+        raise RuntimeError("user not found.")
+    print("login as: " + user_con.find("span", {"class": "tit"}).decode_contents())
     return s
 

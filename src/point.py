@@ -1,5 +1,4 @@
 import requests
-import json
 
 
 def switch_to_idc(s):
