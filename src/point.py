@@ -1,9 +1,10 @@
 import requests
 import json
 
+
 def get_point_JSESSIONID(s):
-    s.get('http://idc.qust.edu.cn/idc/idc?m=idc#finalMenuItem=000_01_01_004&menuAction=idcMenu')
-    return (s.cookies.values()[1])
+    s.get('http://idc.qust.edu.cn/idc/idc')
+    return s.cookies.get("JSESSIONID", domain="idc.qust.edu.cn")
 
 
 def get_point(s):
@@ -33,7 +34,5 @@ def get_point(s):
     response = requests.request("POST", url, data=payload.encode('utf-8'), headers=headers)
 
     tmp = json.loads(response.text)
-
-    #print(tmp)
 
     return tmp
