@@ -1,6 +1,6 @@
 # Retarded QUST (aka 智障青科大)
 
-**「智障青科大」项目组 / [QUST Coder/core-team](https://github.com/orgs/QUST-Coder/teams/core-team)** 出品
+**「智障青科大」项目组 / [QUST-Coder/core-team](https://github.com/orgs/QUST-Coder/teams/core-team)** 出品
 
 ## TODO
 外网查成绩
