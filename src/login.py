@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import execjs
-from src import point
+
 
 def login(username, password):
     s = requests.Session()
@@ -25,15 +25,4 @@ def login(username, password):
     res_soup = BeautifulSoup(login_res.content, 'html.parser')
     print("user: " + res_soup.find("div", id="user-con").find("span", {"class": "tit"}).decode_contents())
     return s
-
-
-if __name__ == '__main__':
-    all_point = point.get_point(login('', ''))
-    for single in (all_point['list']):
-        print('课程号:' + single['KCH'], \
-              '成绩:' + str(single['KCCJ']), \
-              '绩点:' + str(single['JD']), \
-              '学分:' + str(single['XF']), \
-              '学年:' + str(single['XN']), \
-              '成绩填写日期:' + single['CJLRRQ'])
 
