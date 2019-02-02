@@ -1,0 +1,8 @@
+# for PyCharm
+.idea/
+venv/
+
+# for python
+__pycache__/
+*.py[cod]
+*$py.class
