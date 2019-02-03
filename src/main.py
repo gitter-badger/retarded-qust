@@ -1,12 +1,18 @@
 import point
 import login
 import course
+import query_expression
 import argparse
 import getpass
 
 
-def print_score():
-    """print all of your score"""
+def print_score(args):
+    """print score by your input condition, for example: `where AND(schoolYear == "2018-2019", grade < 60)`,
+            you can use `courseID`, `grade`, `point`, `credit`, `schoolYear` and `completionDate` in the expression"""
+    print(args)
+    query_obj = None
+    if args:
+        query_obj = query_expression.generate_query(args)
 
     unformatted_header = "{:16s}|{:6s}|{:6s}|{:6s}|{:12s}|{:18s}|{:24s}"
     unformatted_body = "{:16s}|{:6.1f}|{:6.1f}|{:6.1f}|{:12s}|{:18s}|{:24s}"
@@ -16,29 +22,41 @@ def print_score():
     print(unformatted_header.
           format("-" * 16, "-" * 6, "-" * 6, "-" * 6, "-" * 12, "-" * 18, "-" * 24))
     for single in all_point:
-        print(unformatted_body.format(
-            single['courseID'],
-            single['grade'],
-            single['point'],
-            single['credit'],
-            single['schoolYear'],
-            single['completionDate'],
-            single['courseName']))
+        if (query_obj and query_obj.eval(single)) or not query_obj:
+            print(unformatted_body.format(
+                single['courseID'],
+                single['grade'],
+                single['point'],
+                single['credit'],
+                single['schoolYear'],
+                single['completionDate'],
+                single['courseName']))
 
 
-def print_help():
+def print_all_score(args):
+    """print all of your score"""
+
+    print_score("")
+
+
+def print_help(args):
     """print this help message"""
     print("you can enter the following command to operate:")
     for k, v in command_action_dict.items():
         print("\t{:10s}{}".format(k, v.__doc__))
 
 
-def exit_it():
+def exit_it(args):
     """exit the program"""
     exit()
 
 
-command_action_dict = {"help": print_help, "score": print_score, "exit": exit_it}
+command_action_dict = {
+    "help": print_help,
+    "all": print_all_score,
+    "where": print_score,
+    "exit": exit_it
+}
 
 
 all_point = dict()
@@ -65,8 +83,16 @@ def main():
 
     print("input query commands, 'help' for help.")
     while True:
-        command = input(">> ")
-        command_action_dict[command]()
+        command = input(">> ").split(maxsplit=1)
+        command_name = command[0]
+        command_args = None
+        if len(command) > 1:
+            command_args = command[1]
+        func = command_action_dict.get(command_name)
+        if not func:
+            print("command not found")
+        else:
+            func(command_args)
 
 
 main()
