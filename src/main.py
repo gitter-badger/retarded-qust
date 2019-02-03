@@ -1,5 +1,6 @@
 import point
 import login
+import course
 import argparse
 import getpass
 
@@ -18,13 +19,18 @@ if not args.password:
     args.password = getpass.getpass(password_help + "\n>> password: ")
 all_point = point.get_point(login.login(args.username, args.password))
 
-unformatted_header = "{:24s}|{:6s}|{:6s}|{:6s}|{:12s}|{:18s}"
-unformatted_body = "{:24s}|{:6.1f}|{:6.1f}|{:6.1f}|{:12s}|{:18s}"
+course_dict = course.build_course_dict()
+
+unformatted_header = "{:16s}|{:6s}|{:6s}|{:6s}|{:12s}|{:18s}|{:24s}"
+unformatted_body = "{:16s}|{:6.1f}|{:6.1f}|{:6.1f}|{:12s}|{:18s}|{:24s}"
 
 print(unformatted_header.
-      format('Course ID', 'Grade', 'Point', 'Credit', 'School year', 'Date of completion'))
+      format('Course ID', 'Grade', 'Point', 'Credit', 'School year', 'Date of completion', "Course Name"))
 print(unformatted_header.
-      format("-" * 24, "-" * 6, "-" * 6, "-" * 6, "-" * 12, "-" * 18))
+      format("-" * 16, "-" * 6, "-" * 6, "-" * 6, "-" * 12, "-" * 18, "-" * 24))
 for single in all_point['list']:
+    course_name = course_dict.get(single['KCH'])
+    if not course_name:
+        course_name = "Unknown"
     print(unformatted_body.
-          format(single['KCH'], single['KCCJ'], single['JD'], single['XF'], single['XN'], single['CJLRRQ']))
+          format(single['KCH'], single['KCCJ'], single['JD'], single['XF'], single['XN'], single['CJLRRQ'], course_name))
