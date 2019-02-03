@@ -27,6 +27,9 @@ class QueryObject:
     def __ne__(self, other):
         return QueryObject("!=", self, other)
 
+    def contains(self, item):
+        return QueryObject("in", self, item)
+
     def __repr__(self):
         if self.type == "obj":
             return self.name
@@ -47,7 +50,8 @@ class QueryObject:
                         "<=": lambda a, b: a <= b,
                         ">=": lambda a, b: a >= b,
                         "==": lambda a, b: a == b,
-                        "!=": lambda a, b: a != b
+                        "!=": lambda a, b: a != b,
+                        "in": lambda a, b: b in a,
                     }[obj.name](eval_impl(obj.left, data_), eval_impl(obj.right, data_))
             else:
                 return obj
