@@ -34,7 +34,7 @@ for single_number in number_list:
     ans_json = (response.json()['items'])
 
     for single_json in ans_json:
-        with open('course_all_infor.txt','a') as file:
+        with open('course_all_info.txt','a') as file:
             # single_json = re.sub('yyxdxnxqmc','course_year',single_json)
             # single_json = re.sub('xsxxxx', 'course_type', single_json)
             # single_json = re.sub('xf', 'course_point', single_json)
