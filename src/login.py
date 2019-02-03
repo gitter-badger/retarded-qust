@@ -11,7 +11,7 @@ def login(username, password):
 
     login_page = s.get("http://ipass.qust.edu.cn/tpass/login")
     soup = BeautifulSoup(login_page.content, 'html.parser')
-    exec_ctx = execjs.compile(open("des.js", "r").read())
+    exec_ctx = execjs.compile(open("src/des.js", "r").read())
 
     lt = soup.find("input", id="lt")["value"]
     login_res = s.post("http://ipass.qust.edu.cn/tpass/login", data={
