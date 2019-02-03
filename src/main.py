@@ -1,6 +1,7 @@
 import point
 import login
 import argparse
+import getpass
 
 parser = argparse.ArgumentParser(
     description='Retarded QUST, aka 智障青科大, facilitate the destruction of the university for students')
@@ -14,7 +15,7 @@ args = parser.parse_args()
 if not args.username:
     args.username = input(username_help + "\n>> username: ")
 if not args.password:
-    args.password = input(password_help + "\n>> password: ")
+    args.password = getpass.getpass(password_help + "\n>> password: ")
 all_point = point.get_point(login.login(args.username, args.password))
 
 unformatted_header = "{:24s}|{:6s}|{:6s}|{:6s}|{:12s}|{:18s}"
