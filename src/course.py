@@ -8,3 +8,12 @@ def build_course_dict():
             line_json = json.loads(line.replace("'", '"'))
             course_dict[line_json['kch']] = line_json['kcmc']
     return course_dict
+
+
+def add_course_name_to_result(result, course_dict):
+    for i in result:
+        course_name = course_dict.get(i['courseID'])
+        if not course_name:
+            course_name = "unknown"
+        i['courseName'] = course_name
+    return result
