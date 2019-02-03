@@ -55,11 +55,17 @@ class QueryObject:
 
 
 def generate_query(str):
-    def AND(a, b):
-        return QueryObject("and", a, b)
+    def AND(*args):
+        if len(args) <= 2:
+            return QueryObject("and", args[0], args[1])
+        else:
+            return QueryObject("and", AND(*args[:-1]), args[-1])
 
-    def OR(a, b):
-        return QueryObject("or", a, b)
+    def OR(*args):
+        if len(args) <= 2:
+            return QueryObject("or", args[0], args[1])
+        else:
+            return QueryObject("or", OR(*args[:-1]), args[-1])
 
     courseID = QueryObject(name="courseID")
     grade = QueryObject(name="grade")
