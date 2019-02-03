@@ -28,9 +28,15 @@ print(unformatted_header.
       format('Course ID', 'Grade', 'Point', 'Credit', 'School year', 'Date of completion', "Course Name"))
 print(unformatted_header.
       format("-" * 16, "-" * 6, "-" * 6, "-" * 6, "-" * 12, "-" * 18, "-" * 24))
-for single in all_point['list']:
-    course_name = course_dict.get(single['KCH'])
+for single in all_point:
+    course_name = course_dict.get(single['courseID'])
     if not course_name:
         course_name = "Unknown"
-    print(unformatted_body.
-          format(single['KCH'], single['KCCJ'], single['JD'], single['XF'], single['XN'], single['CJLRRQ'], course_name))
+    print(unformatted_body.format(
+        single['courseID'],
+        single['grade'],
+        single['point'],
+        single['credit'],
+        single['schoolYear'],
+        single['completionDate'],
+        course_name))

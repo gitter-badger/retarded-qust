@@ -902,4 +902,16 @@ def get_point(s):
                                 headers={'Content-Type': "application/json"},
                                 cookies={"JSESSIONID": jsessionid})
 
-    return response.json()
+    result = response.json()['list']
+    beautiful_result = [
+       {
+          'courseID': r['KCH'],
+          'grade': r['KCCJ'],
+          'point': r['JD'],
+          'credit': r['XF'],
+          'schoolYear': r['XN'],
+          'completionDate': r['CJLRRQ']
+       }
+       for r in result
+    ]
+    return beautiful_result
