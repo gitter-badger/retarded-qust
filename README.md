@@ -1,4 +1,7 @@
 # Retarded QUST (aka 智障青科大)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Last Commit](https://img.shields.io/github/last-commit/QUST-Coder/retarded-qust.svg?style=flat)](https://github.com/QUST-Coder/retarded-qust/commits)
 
 **「智障青科大」项目组 / [QUST-Coder/core-team](https://github.com/orgs/QUST-Coder/teams/core-team)** 出品
 
