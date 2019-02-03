@@ -9,7 +9,7 @@ import getpass
 def print_score(args):
     """print score by your input condition, for example: `where AND(schoolYear == "2018-2019", grade < 60)`,
             you can use `courseID`, `grade`, `point`, `credit`, `schoolYear` and `completionDate` in the expression"""
-    print(args)
+    
     query_obj = None
     if args:
         query_obj = query_expression.generate_query(args)

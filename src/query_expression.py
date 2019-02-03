@@ -40,6 +40,8 @@ class QueryObject:
                     return data_[obj.name]
                 else:
                     return {
+                        "and": lambda a, b: a and b,
+                        "or": lambda a, b: a or b,
                         "<": lambda a, b: a < b,
                         ">": lambda a, b: a > b,
                         "<=": lambda a, b: a <= b,
@@ -54,10 +56,10 @@ class QueryObject:
 
 def generate_query(str):
     def AND(a, b):
-        return a and b
+        return QueryObject("and", a, b)
 
     def OR(a, b):
-        return a and b
+        return QueryObject("or", a, b)
 
     courseID = QueryObject(name="courseID")
     grade = QueryObject(name="grade")
