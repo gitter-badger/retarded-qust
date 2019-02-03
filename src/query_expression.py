@@ -73,5 +73,6 @@ def generate_query(str):
     credit = QueryObject(name="credit")
     schoolYear = QueryObject(name="schoolYear")
     completionDate = QueryObject(name="completionDate")
+    courseName = QueryObject(name="courseName")
 
     return eval(str)
